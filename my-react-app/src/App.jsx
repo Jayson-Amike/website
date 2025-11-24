@@ -1,5 +1,6 @@
-console.log("SUPABASE URL:", import.meta.env.VITE_SUPABASE_URL);
-console.log("SUPABASE KEY:", import.meta.env.VITE_SUPABASE_ANON_KEY);
+// console.log("SUPABASE URL:", import.meta.env.VITE_SUPABASE_URL);
+// console.log("SUPABASE KEY:", import.meta.env.VITE_SUPABASE_ANON_KEY);
+
 
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
@@ -15,25 +16,28 @@ export default function App() {
   useEffect(() => {
     async function loadUsers() {
       const { data, error } = await supabase
-        .from("users")
+        .from("product")
         .select("*");
 
       if (error) {
         console.error("Supabase error:", error);
       } else {
         setUsers(data);
+
       }
+      
     }
 
     loadUsers();
   }, []);
 
   return (
-    <div>
-      <h1>Users</h1>
-      {users.map(u => (
-        <p key={u.id}>{u.name}</p>
-      ))}
-    </div>
-  );
+  <div>
+    <h1>Users</h1>
+    {users.length === 0 && <p>No users found.</p>}
+    {users.map((u) => (
+      <p key={u.product_id}>{u.price}</p>
+    ))}
+  </div>
+);
 }
