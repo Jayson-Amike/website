@@ -4,6 +4,7 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
+import NavBar from "./components/NavBar";
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -28,16 +29,18 @@ export default function App() {
       
     }
 
+
     loadUsers();
   }, []);
 
   return (
   <div>
-    <h1>Users</h1>
+    <NavBar />
+    {/* <h1>Users</h1>
     {users.length === 0 && <p>No users found.</p>}
     {users.map((u) => (
       <p key={u.product_id}>{u.price}</p>
-    ))}
+    ))} */}
   </div>
 );
 }
