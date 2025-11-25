@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
+import NavBar from "./components/NavBar";
+import AdminPanel from "./components/Admin/AdminPanel";
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
