@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import NavBar from "./components/NavBar";
 import AdminPanel from "./components/Admin/AdminPanel";
-
+import "./App.css";
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_ANON_KEY
