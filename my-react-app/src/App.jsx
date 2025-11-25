@@ -2,55 +2,21 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
-import NavBar from "./components/NavBar";
 
-// Supabase client
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
-// Shared styles
-const containerStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  height: "100vh",
-  fontFamily: "Arial, sans-serif",
-  backgroundColor: "#f0f2f5",
-};
-
-const cardStyle = {
-  padding: "40px",
-  borderRadius: "8px",
-  backgroundColor: "#fff",
-  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-  textAlign: "center",
-  minWidth: "300px",
-};
-
-const buttonStyle = {
-  padding: "10px 20px",
-  marginTop: "20px",
-  fontSize: "16px",
-  borderRadius: "5px",
-  border: "none",
-  cursor: "pointer",
-  backgroundColor: "#4CAF50",
-  color: "#fff",
-};
-
-const secondaryButtonStyle = {
-  ...buttonStyle,
-  backgroundColor: "#f44336",
-  marginLeft: "10px",
-};
-
-function LoginPage() {
+function AuthPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState(null);
+  const [message, setMessage] = useState("");
+  const [isSignup, setIsSignup] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -67,46 +33,98 @@ function LoginPage() {
     return () => listener.subscription.unsubscribe();
   }, []);
 
-  const signInWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: window.location.origin + "/dashboard" },
     });
+    if (error) setMessage(error.message);
+  };
+
+  const handleEmailAuth = async () => {
+    setMessage("");
+    if (isSignup) {
+      // Signup flow
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        setMessage(error.message);
+      } else {
+        setMessage("Signup successful! Check your email to confirm.");
+      }
+    } else {
+      // Login flow
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        if (error.message.includes("Email not confirmed")) {
+          setMessage("Email not confirmed. Please check your inbox.");
+        } else {
+          setMessage(error.message);
+        }
+      } else {
+        setSession(data.session);
+        navigate("/dashboard");
+      }
+    }
   };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setSession(null);
+    setMessage("");
   };
 
-  if (loading) return <h2 style={{ textAlign: "center" }}>Loading...</h2>;
+  if (loading) return <h2>Loading...</h2>;
 
-  if (!session) {
+  if (session) {
     return (
-      <div style={containerStyle}>
-        <div style={cardStyle}>
-          <h1>Login</h1>
-          <p>Sign in with your Google account to continue</p>
-          <button style={buttonStyle} onClick={signInWithGoogle}>
-            Sign in with Google
-          </button>
-        </div>
+      <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
+        <h2>You are already signed in as {session.user.email}</h2>
+        <button onClick={() => navigate("/dashboard")}>Go to Dashboard</button>
+        <button onClick={handleLogout} style={{ marginLeft: "10px" }}>Sign Out</button>
       </div>
     );
   }
 
   return (
-    <div style={containerStyle}>
-      <div style={cardStyle}>
-        <h2>Welcome, {session.user.email}</h2>
-        <p>You are already signed in.</p>
-        <button style={buttonStyle} onClick={() => navigate("/dashboard")}>
-          Go to Dashboard
-        </button>
-        <button style={secondaryButtonStyle} onClick={handleLogout}>
-          Sign Out
+    <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
+      <h1>{isSignup ? "Sign Up" : "Login"}</h1>
+      {message && <p style={{ color: "red" }}>{message}</p>}
+
+      <div style={{ marginBottom: "20px" }}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
+        />
+        <button onClick={handleEmailAuth} style={{ width: "100%", padding: "10px" }}>
+          {isSignup ? "Sign Up" : "Login"}
         </button>
       </div>
+
+      <hr />
+
+      <button onClick={handleGoogleLogin} style={{ width: "100%", padding: "10px", marginTop: "10px" }}>
+        Sign in with Google
+      </button>
+
+      <p style={{ marginTop: "15px" }}>
+        {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
+        <span
+          onClick={() => { setIsSignup(!isSignup); setMessage(""); }}
+          style={{ color: "blue", cursor: "pointer" }}
+        >
+          {isSignup ? "Login" : "Sign Up"}
+        </span>
+      </p>
     </div>
   );
 }
@@ -120,14 +138,9 @@ function Dashboard() {
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={cardStyle}>
-        <h1>Dashboard</h1>
-        <p>This is a protected page.</p>
-        <button style={buttonStyle} onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
+    <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
+      <h1>Dashboard (Protected)</h1>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }
@@ -149,7 +162,7 @@ function ProtectedRoute({ children }) {
     return () => listener.subscription.unsubscribe();
   }, []);
 
-  if (loading) return <h2 style={{ textAlign: "center" }}>Loading...</h2>;
+  if (loading) return <h2>Loading...</h2>;
   if (!session) return <Navigate to="/login" replace />;
   return children;
 }
@@ -158,7 +171,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={<AuthPage />} />
       <Route
         path="/dashboard"
         element={
@@ -167,7 +180,7 @@ export default function App() {
           </ProtectedRoute>
         }
       />
-      <Route path="*" element={<h1 style={{ textAlign: "center" }}>Not Found</h1>} />
+      <Route path="*" element={<h1>Not Found</h1>} />
     </Routes>
   );
 }
