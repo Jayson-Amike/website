@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
+import NavBar from "./components/NavBar";
 
 // Supabase client
 const supabase = createClient(
