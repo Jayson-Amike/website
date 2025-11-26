@@ -7,9 +7,9 @@ export default function AdminNavBar() {
     <nav className="navbar">
       <h1 className="logo">MyApp</h1>
       <ul className="nav-links">
-        <li><a href="#home">Sale Information</a></li>
-        <li><a href="#users">Users Information</a></li>
-        <li><a href="#about">Inventory</a></li>
+        <li><a href="/admin/orders">Sale Information</a></li>
+        <li><a href="/admin/users">Users Information</a></li>
+        <li><a href="/admin/products">Inventory</a></li>
       </ul>
     </nav>
   );

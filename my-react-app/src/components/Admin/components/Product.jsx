@@ -1,9 +1,9 @@
-import Order_Table from "../../dummy_database/OrderTable";
+import Product_Table from "../../dummy_database/ProductTable";
 import AdminDashboard from "../AdminDashboardTemplate";
 
 
 export default function Orders() {
-  const columns = Object.keys(Order_Table[0]);
+  const columns = Object.keys(Product_Table[0]);
 
   return (
     <div>
@@ -13,17 +13,12 @@ export default function Orders() {
         <thead>
           <tr>
             {columns.map((col) => 
-            
-            {if (col === "User_ID") {
-              return <th key={col}> <a href="/admin/users">{col}</a></th>;
-            } else {
-              return <th key={col} >{col}</th>;
-            }})}
+            <th key={col} >{col}</th>)}
           </tr>
         </thead>
         <tbody>
-          {Order_Table.map((row, index) => (
-            <tr id={Order_Table[index].Order_ID} key={index}>
+          {Product_Table.map((row, index) => (
+            <tr id={Product_Table[index].Product_ID} key={index}>
               {columns.map((col) => <td key={col}>{row[col]}</td>)}
             </tr>
           ))}

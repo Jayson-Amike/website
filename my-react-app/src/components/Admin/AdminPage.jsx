@@ -2,15 +2,11 @@ import AdminDashboard from "./AdminDashboardTemplate";
 import AdminNavBar from "../Navbar/AdminNavBar";
 import { Outlet } from "react-router-dom";
 
-export default function AdminPage() {
+export default function AdminPage({component}) {
   return (
-    <div>
+    <div class="center-horizontal">
       <AdminNavBar />
-      <AdminDashboard
-        title="User Table"
-        description="List of all users"
-      />
-      <Outlet /> {/* Nested routes (like Orders) will render here */}
+     {component}
     </div>
   );
 }

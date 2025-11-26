@@ -1,0 +1,50 @@
+const Product_Table = [
+
+  {
+    Product_ID: 201,
+    Name: "Wireless Mouse",
+    Category: "Electronics",
+    Price: 29.99,
+    Stock_Quantity: 150,
+    Added_Date: "2025-01-10 12:15:00"
+  },
+
+  {
+    Product_ID: 202,
+    Name: "Bluetooth Headphones",
+    Category: "Electronics",
+    Price: 89.99,
+    Stock_Quantity: 80,
+    Added_Date: "2025-01-12 09:45:30"
+  },
+
+  {
+    Product_ID: 203,
+    Name: "Coffee Mug",
+    Category: "Kitchen",
+    Price: 9.99,
+    Stock_Quantity: 200,
+    Added_Date: "2025-01-15 14:20:10"
+  },
+
+  {
+    Product_ID: 204,
+    Name: "Notebook",
+    Category: "Stationery",
+    Price: 4.99,
+    Stock_Quantity: 500,
+    Added_Date: "2025-01-18 11:05:45"
+  },
+
+  {
+    Product_ID: 205,
+    Name: "Desk Lamp",
+    Category: "Home Decor",
+    Price: 39.99,
+    Stock_Quantity: 120,
+    Added_Date: "2025-01-20 16:30:25"
+  }
+
+];
+
+export default Product_Table;
