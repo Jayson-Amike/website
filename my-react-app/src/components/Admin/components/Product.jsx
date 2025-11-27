@@ -1,9 +1,34 @@
 import Product_Table from "../../dummy_database/ProductTable";
 import AdminDashboard from "../AdminDashboardTemplate";
+import supabase from "../../../supabaseClient";
+import { useEffect, useState } from "react"
 
 
 export default function Orders() {
-  const columns = Object.keys(Product_Table[0]);
+ const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+
+      if (error) {
+        console.error(error)
+      } else {
+        setProducts(data)
+      }
+
+      setLoading(false)
+    }
+
+    fetchProducts()
+  }, [])
+
+  if (loading) return <p>Loading...</p>
+
+  const columns = Object.keys(products[0]);
 
   return (
     <div>
@@ -17,8 +42,8 @@ export default function Orders() {
           </tr>
         </thead>
         <tbody>
-          {Product_Table.map((row, index) => (
-            <tr id={Product_Table[index].Product_ID} key={index}>
+          {products.map((row, index) => (
+            <tr id={products[index].Product_ID} key={index}>
               {columns.map((col) => <td key={col}>{row[col]}</td>)}
             </tr>
           ))}
