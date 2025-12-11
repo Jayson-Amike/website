@@ -30,7 +30,7 @@ export default function App() {
       {/* <Route path="/" element={<Navigate to="/IndexPage" replace />} /> */}
       <Route path="/IndexPage" element={<IndexPage />} />
 
-      <
+      
       {/* Catch-all for unknown routes */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
