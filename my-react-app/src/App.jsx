@@ -29,8 +29,8 @@ export default function App() {
         <Route path="/admin/products" element={<AdminPage component={<Products />} />} />
 
         {/* Profile */}
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/profile2" element={<ProfilePage2 />} />
+        <Route path="/profile2" element={<ProfilePage />} />
+        <Route path="/profile" element={<ProfilePage2 />} />
 
         {/* Home */}
         <Route path="/" element={<HomePage />} />
