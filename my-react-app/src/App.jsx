@@ -33,7 +33,7 @@ export default function App() {
 
       
       {/* Catch-all for unknown routes */}
-      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
