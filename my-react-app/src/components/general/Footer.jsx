@@ -5,3 +5,5 @@ const Footer = () => (
     <p style={{ marginTop: '10px', fontSize: '14px' }}>Privacy Policy | Terms of Service | Contact Us</p>
   </footer>
 );
+
+export default Footer;

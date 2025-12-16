@@ -2,7 +2,7 @@ import styles from './styles';
 
 const Navbar = () =>(
   <header style={styles.header}>
-    <div style={styles.logo}>MyCredentialSite</div>
+    <div style={styles.logo}>SkillMarket</div>
     <nav style={styles.nav}>
       <a href="/solutions" style={styles.navLink}>Solutions</a>
       <a href="/individuals" style={styles.navLink}>For Individuals</a>

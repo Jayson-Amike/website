@@ -6,9 +6,9 @@ const UserTypeSection = () => (
     <div style={styles.cardContainer}>
       {/* Card for Organizations */}
       <div style={{ ...styles.card, backgroundColor: '#ffffff' }}>
-        <h3 style={styles.cardTitle}>For Organizations</h3>
+        <h3 style={styles.cardTitle}>For Student </h3>
         <p>
-          Issue secure, verifiable credentials to increase brand loyalty, drive program enrollment, and measure skill development outcomes.
+          Not sure where your skills can take you? Explore career paths, skills  , and discover opportunities tailored to your verified achievements.
         </p>
         <p><a href="/organizations" style={{ color: '#007bff', fontWeight: 'bold' }}>Learn More &rarr;</a></p>
       </div>
@@ -24,3 +24,5 @@ const UserTypeSection = () => (
     </div>
   </section>
 );
+
+export default UserTypeSection;
