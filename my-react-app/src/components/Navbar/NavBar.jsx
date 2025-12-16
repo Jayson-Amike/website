@@ -1,4 +1,5 @@
 import { useAuth } from "../Auth/AuthContext";
+import supabase from "../../supabaseClient";
 import styles from "./styles";
 
 const Navbar = () => {

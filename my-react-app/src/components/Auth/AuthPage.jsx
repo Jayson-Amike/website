@@ -17,13 +17,13 @@ const AuthPage = () => {
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setLoading(false);
-      if (data.session) navigate("/dashboard");
+      if (data.session) navigate("/");
     });
 
     // Listen for auth changes
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      if (session) navigate("/dashboard");
+      if (session) navigate("/");
     });
 
     return () => listener.subscription.unsubscribe();
@@ -32,7 +32,7 @@ const AuthPage = () => {
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: window.location.origin + "/dashboard" },
+      options: { redirectTo: window.location.origin + "/" },
     });
     if (error) setMessage(error.message);
   };
@@ -51,7 +51,7 @@ const AuthPage = () => {
         } else setMessage(error.message);
       } else {
         setSession(data.session);
-        navigate("/dashboard");
+        navigate("/");
       }
     }
   };
@@ -68,7 +68,7 @@ const AuthPage = () => {
     return (
       <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
         <h2>You are already signed in as {session.user.email}</h2>
-        <button onClick={() => navigate("/dashboard")}>Go to Dashboard</button>
+        <button onClick={() => navigate("/")}>Go to Dashboard</button>
         <button onClick={handleLogout} style={{ marginLeft: "10px" }}>Sign Out</button>
       </div>
     );
