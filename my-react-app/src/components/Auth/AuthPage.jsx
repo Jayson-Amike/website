@@ -1,8 +1,9 @@
+// src/components/Auth/AuthPage.jsx
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../../supabaseClient";
 
-export default function AuthPage() {
+const AuthPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState(null);
@@ -12,12 +13,14 @@ export default function AuthPage() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
+    // Get current session
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setLoading(false);
       if (data.session) navigate("/dashboard");
     });
 
+    // Listen for auth changes
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       if (session) navigate("/dashboard");
@@ -76,6 +79,7 @@ export default function AuthPage() {
       <h1>{isSignup ? "Sign Up" : "Login"}</h1>
       {message && <p style={{ color: "red" }}>{message}</p>}
 
+      {/* Email / Password Form */}
       <div style={{ marginBottom: "20px" }}>
         <input
           type="email"
@@ -98,7 +102,11 @@ export default function AuthPage() {
 
       <hr />
 
-      <button onClick={handleGoogleLogin} style={{ width: "100%", padding: "10px", marginTop: "10px" }}>
+      {/* Google OAuth */}
+      <button
+        onClick={handleGoogleLogin}
+        style={{ width: "100%", padding: "10px", marginTop: "10px" }}
+      >
         Sign in with Google
       </button>
 
@@ -113,4 +121,6 @@ export default function AuthPage() {
       </p>
     </div>
   );
-}
+};
+
+export default AuthPage;
