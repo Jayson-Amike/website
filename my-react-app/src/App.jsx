@@ -7,7 +7,8 @@ import Users from "./components/Admin/components/User";
 import AdminPage from "./components/Admin/AdminPage";
 import Orders from "./components/Admin/components/orders";
 import Products from "./components/Admin/components/Product";
-import IndexPage from "./components/general/IndexPage";
+import HomePage from "./components/IndexPage/HomePage";
+
 export default function App() {
   return (
      <Routes>
@@ -28,11 +29,11 @@ export default function App() {
 
       {/* Redirect root path to /admin */}
       {/* <Route path="/" element={<Navigate to="/IndexPage" replace />} /> */}
-      <Route path="/IndexPage" element={<IndexPage />} />
+      <Route path="/" element={<HomePage />} />
 
       
       {/* Catch-all for unknown routes */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   );
 }
