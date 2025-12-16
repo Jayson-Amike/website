@@ -7,7 +7,7 @@ import Footer from './Footer';
 
 
 // --- MAIN INDEX PAGE ---
-function IndexPage() {
+function HomePage() {
   return (
     <div>
       <Navbar />
@@ -21,4 +21,4 @@ function IndexPage() {
   );
 }
 
-export default IndexPage;
+export default HomePage;

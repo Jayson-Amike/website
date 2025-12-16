@@ -14,8 +14,7 @@ import AdminPanel from "./components/Admin/AdminPanel";
 import Orders from "./components/Admin/components/orders";
 import Users from "./components/Admin/components/User";
 import Products from "./components/Admin/components/Product";
-
-import IndexPage from "./components/general/IndexPage";
+import HomePage from "./components/IndexPage/HomePage";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -77,17 +76,22 @@ export default function App() {
         {/* User Dashboard */}
         <Route path="/dashboard" element={<Dashboard />} />
 
-        {/* Admin Routes */}
-        <Route path="/admin" element={userRole === "admin" ? <AdminPage /> : <Navigate to="/login" />} >
-          <Route index element={<AdminPanel />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="users" element={<Users />} />
-          <Route path="products" element={<Products />} />
-        </Route>
+      {/* Admin */}
+      <Route path="/admin" element={<AdminPage />} />
 
-        {/* Catch-all */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </>
+      <Route path="/admin/orders" element={<AdminPage component={<Orders />} />} />
+
+      <Route path="/admin/users" element={<AdminPage component={<Users />} />} />
+
+      <Route path="/admin/products" element={<AdminPage component={<Products />} />} />
+
+      {/* Redirect root path to /admin */}
+      {/* <Route path="/" element={<Navigate to="/IndexPage" replace />} /> */}
+      <Route path="/" element={<HomePage />} />
+
+      
+      {/* Catch-all for unknown routes */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
