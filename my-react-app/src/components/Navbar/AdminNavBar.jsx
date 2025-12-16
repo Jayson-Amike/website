@@ -1,6 +1,5 @@
 // NavBar.jsx
-import React from "react";
-import "./NavBar.css"; // optional for styling
+import styles from './styles';
 
 export default function AdminNavBar() {
   return (
