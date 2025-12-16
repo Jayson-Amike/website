@@ -1,12 +1,11 @@
-import AdminDashboard from "./AdminDashboardTemplate";
-import AdminNavBar from "../Navbar/AdminNavBar";
+//import AdminNavBar from "./AdminNavBar";
 import { Outlet } from "react-router-dom";
 
-export default function AdminPage({component}) {
+export default function AdminPage() {
   return (
-    <div class="center-horizontal">
+    <div className="center-horizontal">
       <AdminNavBar />
-     {component}
+      <Outlet />
     </div>
   );
 }

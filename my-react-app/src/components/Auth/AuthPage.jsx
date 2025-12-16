@@ -15,12 +15,10 @@ export default function AuthPage() {
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setLoading(false);
-      if (data.session) navigate("/dashboard");
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      if (session) navigate("/dashboard");
     });
 
     return () => listener.subscription.unsubscribe();
@@ -29,7 +27,7 @@ export default function AuthPage() {
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: window.location.origin + "/dashboard" },
+      options: { redirectTo: window.location.origin },
     });
     if (error) setMessage(error.message);
   };
@@ -48,7 +46,10 @@ export default function AuthPage() {
         } else setMessage(error.message);
       } else {
         setSession(data.session);
-        navigate("/dashboard");
+        // Redirect based on role
+        const role = data.session.user.user_metadata?.role || "user";
+        if (role === "admin") navigate("/admin");
+        else navigate("/"); // normal user goes to home page
       }
     }
   };
@@ -62,15 +63,24 @@ export default function AuthPage() {
   if (loading) return <h2>Loading...</h2>;
 
   if (session) {
+    // Already logged in → show logout/dashboard options
+    const role = session.user.user_metadata?.role || "user";
     return (
       <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
         <h2>You are already signed in as {session.user.email}</h2>
-        <button onClick={() => navigate("/dashboard")}>Go to Dashboard</button>
-        <button onClick={handleLogout} style={{ marginLeft: "10px" }}>Sign Out</button>
+        {role === "admin" ? (
+          <button onClick={() => navigate("/admin")}>Go to Admin Dashboard</button>
+        ) : (
+          <button onClick={() => navigate("/")}>Go to Home</button>
+        )}
+        <button onClick={handleLogout} style={{ marginLeft: "10px" }}>
+          Sign Out
+        </button>
       </div>
     );
   }
 
+  // Not logged in → show login/signup form
   return (
     <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
       <h1>{isSignup ? "Sign Up" : "Login"}</h1>
@@ -105,7 +115,10 @@ export default function AuthPage() {
       <p style={{ marginTop: "15px" }}>
         {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
         <span
-          onClick={() => { setIsSignup(!isSignup); setMessage(""); }}
+          onClick={() => {
+            setIsSignup(!isSignup);
+            setMessage("");
+          }}
           style={{ color: "blue", cursor: "pointer" }}
         >
           {isSignup ? "Login" : "Sign Up"}
