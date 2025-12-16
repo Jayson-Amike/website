@@ -4,13 +4,13 @@ const Navbar = () =>(
   <header style={styles.header}>
     <div style={styles.logo}>SkillMarket</div>
     <nav style={styles.nav}>
-      <a href="/solutions" style={styles.navLink}>Solutions</a>
-      <a href="/individuals" style={styles.navLink}>For Individuals</a>
-      <a href="/pricing" style={styles.navLink}>Pricing</a>
+      <a href="/skills" style={styles.navLink}>Skills</a>
+      <a href="/careers" style={styles.navLink}>Careers</a>
+      <a href="/profile" style={styles.navLink}>Profile Page</a>
       <a href="/login" style={styles.navLink}>Log In</a>
-      <a href="/get-started" style={styles.ctaButton} onClick={(e) => { e.preventDefault(); alert('Start your journey!'); }}>
+      {/* <a href="/get-started" style={styles.ctaButton} onClick={(e) => { e.preventDefault(); alert('Start your journey!'); }}>
         Get Started
-      </a>
+      </a> */}
     </nav>
   </header>
 );

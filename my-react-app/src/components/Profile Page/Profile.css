@@ -1,0 +1,309 @@
+/* --- Global & Layout --- */
+:root {
+  --bg-color: #f9fafb;
+  --card-bg: #ffffff;
+  --primary-text: #111827;
+  --secondary-text: #4b5563;
+  --muted-text: #9ca3af;
+  --border-color: #e5e7eb;
+  --orange-accent: #ea580c; /* Credly orange-ish */
+  --green-accent: #16a34a;
+  --banner-color: #1e293b; /* Dark slate */
+  --nav-bg: #0f172a;
+  --radius: 8px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--primary-text);
+} */
+
+/* --- Navigation --- */
+.navbar {
+  background-color: var(--nav-bg);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.nav-link {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+/* --- Banner & Main Container --- */
+.profile-banner {
+  height: 12rem;
+  background-color: var(--banner-color);
+  width: 100%;
+}
+
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem 1.5rem;
+  /* This creates the overlap effect */
+  margin-top: -6rem; 
+}
+
+/* --- Grid Layout --- */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* Desktop: split into side (1 part) and content (2 parts) */
+@media (min-width: 1024px) {
+  .profile-grid {
+    grid-template-columns: 350px 1fr;
+  }
+}
+
+/* --- User Profile Card (Left Column) --- */
+.profile-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
+}
+
+.verified-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: var(--green-accent);
+  color: white;
+  padding: 4px;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-name {
+  margin: 1rem 0 0.25rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.user-role {
+  color: var(--secondary-text);
+  font-weight: 500;
+  margin: 0;
+}
+
+.user-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--muted-text);
+}
+
+.share-btn {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--green-accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.share-btn:hover {
+  background-color: #15803d;
+}
+
+.profile-stats {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--secondary-text);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-weight: bold;
+  color: var(--primary-text);
+}
+
+/* --- Badge Dashboard (Right Column) --- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.icon-orange {
+  color: var(--orange-accent);
+}
+
+.filter-select {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: white;
+  color: var(--secondary-text);
+}
+
+/* Badge Grid */
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.badge-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.badge-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.badge-img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.badge-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--primary-text);
+}
+
+.badge-issuer {
+  font-size: 0.875rem;
+  color: var(--secondary-text);
+  margin-bottom: 0.25rem;
+}
+
+.badge-date {
+  font-size: 0.75rem;
+  color: var(--muted-text);
+}
+
+.verify-btn {
+  margin-top: 1rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--orange-accent);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.verify-btn:hover {
+  background-color: #c2410c;
+}
+
+/* --- Sidebar (About/Skills) --- */
+.sidebar-section {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-title {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-text);
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-text {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--secondary-text);
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  background-color: #f3f4f6;
+  color: var(--secondary-text);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px; /* Pill shape */
+  font-size: 0.75rem;
+}

@@ -8,7 +8,8 @@ import AdminPage from "./components/Admin/AdminPage";
 import Orders from "./components/Admin/components/orders";
 import Products from "./components/Admin/components/Product";
 import HomePage from "./components/IndexPage/HomePage";
-
+import ProfilePage from "./components/Profile Page/profilePage.jsx";
+import ProfilePage2 from "./components/Profile Page/profilePage2.jsx";
 export default function App() {
   return (
      <Routes>
@@ -26,6 +27,10 @@ export default function App() {
       <Route path="/admin/users" element={<AdminPage component={<Users />} />} />
 
       <Route path="/admin/products" element={<AdminPage component={<Products />} />} />
+
+      <Route path="/profile" element={<ProfilePage />} />
+
+      <Route path="/profile2" element={<ProfilePage2 />} />
 
       {/* Redirect root path to /admin */}
       {/* <Route path="/" element={<Navigate to="/IndexPage" replace />} /> */}
