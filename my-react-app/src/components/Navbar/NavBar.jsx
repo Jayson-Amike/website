@@ -1,16 +1,16 @@
-// NavBar.jsx
-import React from "react";
-import "./NavBar.css"; // optional for styling
+import styles from './styles';
 
-export default function NavBar() {
-  return (
-    <nav className="navbar">
-      <h1 className="logo">MyApp</h1>
-      <ul className="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#users">Users</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
+const Navbar = () =>(
+  <header style={styles.header}>
+    <div style={styles.logo}>SkillMarket</div>
+    <nav style={styles.nav}>
+      <a href="/skills" style={styles.navLink}>Skills</a>
+      <a href="/careers" style={styles.navLink}>Careers</a>
+      <a href="/profile" style={styles.navLink}>Profile Page</a>
+      <a href="/login" style={styles.navLink}>Log In</a>
+      
     </nav>
-  );
-}
+  </header>
+);
+
+export default Navbar;

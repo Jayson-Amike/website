@@ -4,13 +4,21 @@ import "./NavBar.css"; // optional for styling
 
 export default function AdminNavBar() {
   return (
-    <nav className="navbar">
-      <h1 className="logo">MyApp</h1>
-      <ul className="nav-links">
-        <li><a href="/admin/orders">Sale Information</a></li>
-        <li><a href="/admin/users">Users Information</a></li>
-        <li><a href="/admin/products">Inventory</a></li>
-      </ul>
-    </nav>
+    <header style={styles.header}>
+  <div style={styles.logo}>MyApp</div>
+
+  <nav style={styles.nav}>
+    <a href="/admin/orders" style={styles.navLink}>
+      Sale Information
+    </a>
+    <a href="/admin/users" style={styles.navLink}>
+      Users Information
+    </a>
+    <a href="/admin/products" style={styles.navLink}>
+      Inventory
+    </a>
+  </nav>
+</header>
+
   );
 }
