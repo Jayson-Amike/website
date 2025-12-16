@@ -28,9 +28,9 @@ export default function App() {
 
       <Route path="/admin/products" element={<AdminPage component={<Products />} />} />
 
-      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/profile2" element={<ProfilePage />} />
 
-      <Route path="/profile2" element={<ProfilePage2 />} />
+      <Route path="/profile" element={<ProfilePage2 />} />
 
       {/* Redirect root path to /admin */}
       {/* <Route path="/" element={<Navigate to="/IndexPage" replace />} /> */}
