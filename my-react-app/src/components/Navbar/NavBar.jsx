@@ -22,7 +22,12 @@ const Navbar = () => {
         ) : (
           <a href="/login" style={styles.navLink}>Log In</a>
         )}
+              {/* need to hide or remove components to detect admin or not  */}
+
+        <a href="/admin" style={styles.navLink}>adnim Page</a>
+
       </nav>
+
     </header>
   );
 };

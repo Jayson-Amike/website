@@ -9,8 +9,9 @@ import AdminPage from "./components/Admin/AdminPage";
 import Orders from "./components/Admin/components/orders";
 import Products from "./components/Admin/components/Product";
 import HomePage from "./components/IndexPage/HomePage";
-import ProfilePage from "./components/Profile Page/profilePage.jsx";
-import ProfilePage2 from "./components/Profile Page/profilePage2.jsx";
+import ProfilePage from "./components/Customer/Profile Page/profilePage.jsx";
+import ProfilePage2 from "./components/Customer/Profile Page/profilePage2.jsx";
+import AdminDashboard from "./components/Admin/components/AdminDashboard";
 
 export default function App() {
   return (
@@ -23,10 +24,13 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
 
         {/* Admin */}
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/admin/orders" element={<AdminPage component={<Orders />} />} />
-        <Route path="/admin/users" element={<AdminPage component={<Users />} />} />
-        <Route path="/admin/products" element={<AdminPage component={<Products />} />} />
+       <Route path="/admin" element={<AdminPage />}>
+          {/* These components will "fill" the Outlet when the URL matches */}
+          <Route index element={<AdminDashboard />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="users" element={<Users />} />
+          <Route path="products" element={<Products />} />
+        </Route>
 
         {/* Profile */}
         <Route path="/profile2" element={<ProfilePage />} />

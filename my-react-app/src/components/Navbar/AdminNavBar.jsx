@@ -16,6 +16,9 @@ export default function AdminNavBar() {
     <a href="/admin/products" style={styles.navLink}>
       Inventory
     </a>
+    <a href="/" style={styles.navLink}>
+      Customer View
+    </a>
   </nav>
 </header>
 

@@ -1,12 +1,14 @@
-import AdminDashboard from "./AdminDashboardTemplate";
-import AdminNavBar from "../Navbar/AdminNavBar";
 import { Outlet } from "react-router-dom";
+import AdminNavBar from "../Navbar/AdminNavBar";
 
-export default function AdminPage({component}) {
+export default function AdminPage() {
   return (
-    <div class="center-horizontal">
-      <AdminNavBar />
-     {component}
+    <div className="admin-layout">
+      <AdminNavBar /> {/* This stays fixed */}
+      
+      <div className="content-area">
+        <Outlet />  {/* This is the "reserved seat" for Orders, Users, etc. */}
+      </div>
     </div>
   );
 }
