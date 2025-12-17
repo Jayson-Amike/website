@@ -14,6 +14,7 @@ import ProfilePage2 from "./components/Customer/Profile Page/profilePage2.jsx";
 import AdminDashboard from "./components/Admin/components/AdminDashboard";
 import CustomerLayout from "./components/Customer/CustomerLayout";
 import ProductLayout from "./components/Product/ProductLayout.jsx";
+import ProductContent from "./components/Product/ProductContent.jsx";
 export default function App() {
   return (
     <AuthProvider>
@@ -47,20 +48,20 @@ export default function App() {
 
             {/* Products section  */}
             <Route path="/products" element={<ProductLayout />}>
-              {/* Categories (carrer field | entry level)*/}
-              <Route index element={<ProductLayout />} />
-              {/* <Route path="entry-level" element={<EntryLevel />} /> */}
-            </Route>
-                {/* product */}
-          
+              {/* The Parent (Layout) stays clean. The Children get the props. */}
+              <Route index element={<ProductContent Categories="all" />} />
+              <Route path="career_fields" element={<ProductContent Categories="career" />} />
+              <Route path="entry_levels" element={<ProductContent Categories="entry" />} />
+                            <Route path="everything" element={<ProductContent Categories="everything" />} />
 
+            </Route>
           </Route>
 
         
 
        
         {/* Catch-all */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
     </AuthProvider>
   );

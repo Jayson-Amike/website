@@ -15,9 +15,12 @@ const Navbar = () => {
       <a href="/" style={styles.navLink}s ><div style={styles.logo}>SkillMarket</div></a>
 
       <nav style={styles.nav}>
-        <a href="/skills" style={styles.navLink}>Skills</a>
-        <a href="/careers" style={styles.navLink}>Careers</a>
-        <a href="/profile" style={styles.navLink}>Profile Page</a>
+        {/* <a href="/skills" style={styles.navLink}>Skills</a> */}
+        <a href="/products" style={styles.navLink}>Careers</a>
+
+        <a href="/products/career_fields" style={styles.navLink}>Careers Fields</a>
+        <a href="/products/entry_levels" style={styles.navLink}>Entry Levels</a>
+        <a href= "/profile" style={styles.navLink}>Profile</a>
         {session ? (
           <span onClick={handleLogout} style={{ ...styles.navLink, cursor: "pointer" }}>Log Out</span>
         ) : (

@@ -14,7 +14,7 @@ const CategoryCard = ({Name, tbName}) => {
         console.error(error)
       } else {
         setProducts(data)
-        console.log(data)
+        // console.log(data)
       }
 
       setLoading(false)
@@ -29,7 +29,7 @@ const CategoryCard = ({Name, tbName}) => {
 
   return(
   <div className="category-container">
-          <h2>{Name}</h2>
+          <h1>{Name}</h1>
 
     <div className="category-card-container">
       {products.map((product) => (

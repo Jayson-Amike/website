@@ -1,30 +1,10 @@
-import React from 'react';
-import { MapPin, Share2, Award, CheckCircle } from 'lucide-react';
-import './Product.css'; 
-import CategoryCard from './CategoryCard.jsx';
-import supabase from "../../supabaseClient";
-import { useState, useEffect } from 'react';
-
-
-
+import { Outlet } from 'react-router-dom';
+import "./Product.css";
 const ProductLayout = () => {
   return (
-    <div>
-
-      {/* <div className="profile-banner"></div>
-
-       <ProfileInfo />
-       <select className="filter-select">
-                  <option>Most Recent</option>
-                  <option>Most Popular</option>
-        </select>
-
-      <Dashboard /> */}
-      <div className='product-container'>
-        <CategoryCard Name="Career Fields" tbName="careerfieldcategories" />
-        <CategoryCard Name="Entry Levels" tbName="entrylevels" />
-      </div>
-      
+    <div className="layout-shell">
+      {/* <h1>Product Dashboard</h1> */}
+      <Outlet /> {/* Child routes will inject ProductContent here */}
     </div>
   );
 };
