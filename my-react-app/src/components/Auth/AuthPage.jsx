@@ -95,6 +95,7 @@ const AuthPage = () => {
           onChange={(e) => setPassword(e.target.value)}
           style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
         />
+        
         <button onClick={handleEmailAuth} style={{ width: "100%", padding: "10px" }}>
           {isSignup ? "Sign Up" : "Login"}
         </button>
