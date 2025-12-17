@@ -1,7 +1,6 @@
 import React from 'react';
 import { MapPin, Share2, Award, CheckCircle } from 'lucide-react';
 import './Profile.css'; // Make sure to import the CSS file here!
-import Navbar from '../../IndexPage/NavBar.jsx';
 // --- Mock Data ---
 const userData = {
   name: "Jane Developer",
@@ -93,7 +92,6 @@ const Sidebar = () => (
 const ProfilePage = () => {
   return (
     <div className="app-container">
-      <Navbar />
       
       {/* Banner Area */}
       <div className="profile-banner"></div>

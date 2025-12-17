@@ -12,13 +12,13 @@ import HomePage from "./components/IndexPage/HomePage";
 import ProfilePage from "./components/Customer/Profile Page/profilePage.jsx";
 import ProfilePage2 from "./components/Customer/Profile Page/profilePage2.jsx";
 import AdminDashboard from "./components/Admin/components/AdminDashboard";
-
+import CustomerLayout from "./components/Customer/CustomerLayout";
+import ProductLayout from "./components/Product/ProductLayout.jsx";
 export default function App() {
   return (
     <AuthProvider>
       <Routes>
-        {/* Public Routes */}
-        <Route path="/login" element={<AuthPage />} />
+        
 
         {/* Dashboard */}
         <Route path="/dashboard" element={<Dashboard />} />
@@ -32,13 +32,33 @@ export default function App() {
           <Route path="products" element={<Products />} />
         </Route>
 
-        {/* Profile */}
-        <Route path="/profile2" element={<ProfilePage />} />
-        <Route path="/profile" element={<ProfilePage2 />} />
+                {/* CUSTOMER SECTION */}
+          <Route element={<CustomerLayout />}>
+            {/* Home */}
+            <Route path="/" element={<HomePage />} />
 
-        {/* Home */}
-        <Route path="/" element={<HomePage />} />
 
+            {/* Auth */}
+            < Route path="/login" element={<AuthPage />} />
+          
+            {/* Profile */}
+            <Route path="/profile2" element={<ProfilePage />} />
+            <Route path="/profile" element={<ProfilePage2 />} />
+
+            {/* Products section  */}
+            <Route path="/products" element={<ProductLayout />}>
+              {/* Categories (carrer field | entry level)*/}
+              <Route index element={<ProductLayout />} />
+              {/* <Route path="entry-level" element={<EntryLevel />} /> */}
+            </Route>
+                {/* product */}
+          
+
+          </Route>
+
+        
+
+       
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

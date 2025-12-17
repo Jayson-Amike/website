@@ -1,7 +1,6 @@
 import React from 'react';
 import { MapPin, Share2, Award, CheckCircle } from 'lucide-react';
 import './Profile.css'; // Make sure to import the CSS file here!
-import Navbar from '../../IndexPage/NavBar.jsx';
 import BadgeCard from './BadgeCard.jsx';
 import ProfileInfo from './ProfileInfo.jsx';
 import Dashboard from './Dashboard.jsx';
@@ -15,7 +14,6 @@ import Dashboard from './Dashboard.jsx';
 const ProfilePage2 = () => {
   return (
     <div>
-      <Navbar />
 
       <div className="profile-banner"></div>
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../Navbar/Navbar';
 import HeroSection from './HeroSection';
 import UserTypeSection from './UserTypeSection';
 import FeaturesSection from './FeatureSection';
@@ -10,7 +9,6 @@ import Footer from './Footer';
 function HomePage() {
   return (
     <div>
-      <Navbar />
       <main>
         <HeroSection />
         <UserTypeSection />

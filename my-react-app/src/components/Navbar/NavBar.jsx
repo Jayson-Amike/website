@@ -12,7 +12,8 @@ const Navbar = () => {
 
   return (
     <header style={styles.header}>
-      <div style={styles.logo}>SkillMarket</div>
+      <a href="/" style={styles.navLink}s ><div style={styles.logo}>SkillMarket</div></a>
+
       <nav style={styles.nav}>
         <a href="/skills" style={styles.navLink}>Skills</a>
         <a href="/careers" style={styles.navLink}>Careers</a>
@@ -23,6 +24,7 @@ const Navbar = () => {
           <a href="/login" style={styles.navLink}>Log In</a>
         )}
               {/* need to hide or remove components to detect admin or not  */}
+          <a href="/products" style={styles.navLink}>Products</a>
 
         <a href="/admin" style={styles.navLink}>adnim Page</a>
 
