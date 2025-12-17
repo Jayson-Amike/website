@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapPin, Share2, Award, CheckCircle } from 'lucide-react';
 import './Profile.css'; // Make sure to import the CSS file here!
-import Navbar from '../IndexPage/NavBar.jsx';
+import Navbar from '../../IndexPage/NavBar.jsx';
 // --- Mock Data ---
 const userData = {
   name: "Jane Developer",

@@ -1,4 +1,4 @@
-import UserTable from "../../dummy_database/UserTable";
+import UserTable from "../../Customer/dummy_database/UserTable";
 import AdminDashboard from "../AdminDashboardTemplate";
 
 

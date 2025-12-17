@@ -1,4 +1,4 @@
-import Product_Table from "../../dummy_database/ProductTable";
+import Product_Table from "../../Customer/dummy_database/ProductTable";
 import AdminDashboard from "../AdminDashboardTemplate";
 import supabase from "../../../supabaseClient";
 import { useEffect, useState } from "react"
