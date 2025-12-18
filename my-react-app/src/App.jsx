@@ -35,6 +35,9 @@ import ProductCard from "./components/Product/Product/ProductCard.jsx";
 import CatergoryContent from "./components/Product/caregory/CatergoryContent.jsx";
 import ProductContent from "./components/Product/Product/ProductContent.jsx";
 import ProductPage from "./components/Product/Product/ProductPage.jsx";
+
+import CheckoutPage from "./components/Checkout/CheckoutPage";
+
 export default function App() {
   return (
     <AuthProvider>

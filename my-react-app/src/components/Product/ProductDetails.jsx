@@ -70,6 +70,7 @@ const ProductDetails = ({ table }) => {
 
       {addedMessage && <p>{addedMessage}</p>}
     </div>
+    </div>
   );
 };
 
