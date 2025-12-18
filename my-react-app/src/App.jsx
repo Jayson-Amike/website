@@ -15,6 +15,7 @@ import AdminDashboard from "./components/Admin/components/AdminDashboard";
 import CustomerLayout from "./components/Customer/CustomerLayout";
 import ProductLayout from "./components/Product/ProductLayout.jsx";
 import ProductContent from "./components/Product/ProductContent.jsx";
+import ProductDetails from "./components/Product/ProductDetails.jsx";
 export default function App() {
   return (
     <AuthProvider>
@@ -52,7 +53,8 @@ export default function App() {
               <Route index element={<ProductContent Categories="all" />} />
               <Route path="career_fields" element={<ProductContent Categories="career" />} />
               <Route path="entry_levels" element={<ProductContent Categories="entry" />} />
-                            <Route path="everything" element={<ProductContent Categories="everything" />} />
+              <Route path="everything" element={<ProductContent Categories="everything" />} />
+                <Route path=":table/:id" element={<ProductDetails />} />
 
             </Route>
           </Route>
