@@ -1,35 +1,41 @@
-import { MapPin, Share2, Award, CheckCircle } from 'lucide-react';
-import ProfileStats from './ProfileStats.jsx';
-const userData = {
-  name: "Jane Developer",
-  role: "Senior Frontend Engineer",
-  location: "San Francisco, CA, USA",
-  bio: "Passionate about building accessible web applications and teaching React.",
-  avatar: "https://i.pravatar.cc/150?img=32"
-};
+import { MapPin, CheckCircle } from "lucide-react";
+import ProfileStats from "./ProfileStats.jsx";
 
+const ProfileInfo = ({ profile }) => {
+  if (!profile) return null;
 
-const ProfileInfo = () => {
   return (
     <div className="profile-card">
-            {/* Avatar */}
-            <div className="avatar-container">
-              <img src={userData.avatar} alt="Profile" className="avatar-img" />
-              <div className="verified-icon">
-                  <CheckCircle size={16} />
-              </div>
-          </div>
-           <h1 className="user-name">{userData.name}</h1>
-              <p className="user-role">{userData.role}</p>
+      {/* Avatar */}
+      <div className="avatar-container">
+        <img
+          src={profile.avatar_url || "https://i.pravatar.cc/150"}
+          alt="Profile"
+          className="avatar-img"
+        />
+        <div className="verified-icon">
+          <CheckCircle size={16} />
+        </div>
+      </div>
 
-              <div className="user-location">
-                    <MapPin size={16} />
-                    <span>{userData.location}</span>
-                </div>
+      <h1 className="user-name">
+        {profile.username || profile.email}
+      </h1>
 
-               <ProfileStats />
-            </div>
-    );
-}
+      <p className="user-role">
+        {profile.role || "Member"}
+      </p>
+
+      {profile.location && (
+        <div className="user-location">
+          <MapPin size={16} />
+          <span>{profile.location}</span>
+        </div>
+      )}
+
+      <ProfileStats userId={profile.id} />
+    </div>
+  );
+};
 
 export default ProfileInfo;
