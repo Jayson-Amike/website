@@ -64,7 +64,7 @@ export default function App() {
           </Route>
 
           {/* Optional catch-all */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
         </Routes>
       </CartProvider>
     </AuthProvider>

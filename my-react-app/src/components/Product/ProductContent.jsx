@@ -6,15 +6,16 @@ const ProductContent = ({ Categories }) => {
 
   switch (Categories) {
     case "career":
-      content = <CategoryCard Name="Career Fields" tbName="careerfieldcategories" />;
+      content = <CategoryCard Name="Career Fields" tbName="careerfieldcategories"   route="career_fields"
+/>;
       break;
 
     case "entry":
-      content = <CategoryCard Name="Entry Levels" tbName="entrylevels" />;
+      content = <CategoryCard Name="Entry Levels" tbName="entrylevels" route="entry_levels" />;
       break;
 
     case "careers":
-      content = <CategoryCard Name="Careers" tbName="careers" />;
+      content = <CategoryCard Name="Careers" tbName="careers" route="careers" />;
       break;
 
     default:
