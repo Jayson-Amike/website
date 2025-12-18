@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import supabase from "../../../../supabaseClient";
 import EditProfileForm from "./EditProfileForm";
+import OrderHistory from "./OrderHistory";
 import "./SimpleProfile.css";
 
 const SimpleProfile = () => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [editing, setEditing] = useState(false);
+  const [activeTab, setActiveTab] = useState("profile"); // "profile" or "orders"
 
   useEffect(() => {
     async function loadProfile() {
@@ -14,7 +16,7 @@ const SimpleProfile = () => {
         data: { user },
       } = await supabase.auth.getUser();
 
-      if (!user) return;
+      if (!user) return setUser(null);
 
       setUser(user);
 
@@ -35,36 +37,55 @@ const SimpleProfile = () => {
 
   return (
     <div className="profile-wrapper">
-      <div className="profile-card">
-        {!editing ? (
-          <>
-            <div className="profile-avatar">
-              {profile.username?.[0]?.toUpperCase() || "U"}
-            </div>
-
-            <h2 className="profile-name">{profile.username}</h2>
-            <p className="profile-email">{profile.email}</p>
-
-            <div className="profile-divider" />
-            <p className="profile-bio">{profile.bio || "No bio yet."}</p>
-
-            <button
-              className="edit-btn"
-              onClick={() => setEditing(true)}
-            >
-              Edit Profile
-            </button>
-          </>
-        ) : (
-          <EditProfileForm
-            profile={profile}
-            onSave={(updated) => {
-              setProfile(updated);
-              setEditing(false);
-            }}
-          />
-        )}
+      <div className="profile-tabs">
+        <button
+          className={activeTab === "profile" ? "active" : ""}
+          onClick={() => setActiveTab("profile")}
+        >
+          Profile
+        </button>
+        <button
+          className={activeTab === "orders" ? "active" : ""}
+          onClick={() => setActiveTab("orders")}
+        >
+          Order History
+        </button>
       </div>
+
+      {activeTab === "profile" && (
+        <div className="profile-card">
+          {!editing ? (
+            <>
+              <div className="profile-avatar">
+                {profile.username?.[0]?.toUpperCase() || "U"}
+              </div>
+
+              <h2 className="profile-name">{profile.username}</h2>
+              <p className="profile-email">{profile.email}</p>
+
+              <div className="profile-divider" />
+              <p className="profile-bio">{profile.bio || "No bio yet."}</p>
+
+              <button
+                className="edit-btn"
+                onClick={() => setEditing(true)}
+              >
+                Edit Profile
+              </button>
+            </>
+          ) : (
+            <EditProfileForm
+              profile={profile}
+              onSave={(updated) => {
+                setProfile(updated);
+                setEditing(false);
+              }}
+            />
+          )}
+        </div>
+      )}
+
+      {activeTab === "orders" && <OrderHistory />}
     </div>
   );
 };

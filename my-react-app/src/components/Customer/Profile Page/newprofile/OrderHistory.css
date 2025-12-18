@@ -1,0 +1,28 @@
+.order-history-wrapper {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.order-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.order-history-table th,
+.order-history-table td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.order-history-table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+}
+
+.order-history-table tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
