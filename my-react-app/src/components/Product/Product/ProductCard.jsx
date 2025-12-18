@@ -56,6 +56,7 @@ const ProductCard = ({ Name, tbName, route, filtervalue }) => {
               className="product-img"
             />
             <p className="product-issuer">{product.description}</p>
+            <p>{product.price}</p>
           </div>
         ))}
       </div>
