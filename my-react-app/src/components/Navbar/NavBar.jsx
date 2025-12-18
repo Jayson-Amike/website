@@ -16,7 +16,7 @@ const Navbar = () => {
 
       <nav style={styles.nav}>
         {/* <a href="/skills" style={styles.navLink}>Skills</a> */}
-        <a href="/products" style={styles.navLink}>Careers</a>
+        <a href="/products/everything" style={styles.navLink}>Careers</a>
 
         <a href="/products/career_fields" style={styles.navLink}>Careers Fields</a>
         <a href="/products/entry_levels" style={styles.navLink}>Entry Levels</a>
