@@ -38,6 +38,7 @@ import ProductContent from "./components/Product/Product/ProductContent.jsx";
 import ProductPage from "./components/Product/Product/ProductPage.jsx";
 
 import CheckoutPage from "./components/Checkout/CheckoutPage";
+import OrderConfirmationPage from "./components/Checkout/OrderConfirmationPage";
 
 export default function App() {
   return (
@@ -84,6 +85,8 @@ export default function App() {
 
             {/* Checkout */}
             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/order-confirmed" element={<OrderConfirmationPage />} />
+
           </Route>
 
           {/* Optional fallback */}
