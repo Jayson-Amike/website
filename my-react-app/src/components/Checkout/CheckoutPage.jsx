@@ -58,9 +58,10 @@ const CheckoutPage = () => {
     0
   );
 
+  // ✅ UPDATED handleSubmit to navigate to order confirmed page
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: handle payment processing
+    // Normally here you would process the payment
     console.log({
       cardType,
       cardName,
@@ -72,7 +73,9 @@ const CheckoutPage = () => {
       street,
       products,
     });
-    alert("Payment submitted!");
+
+    // Redirect to Order Confirmed page
+    navigate("/order-confirmed");
   };
 
   if (!cartLoaded || loading) return <p>Loading checkout...</p>;
