@@ -1,10 +1,10 @@
-// src/components/Auth/AuthPage.jsx
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../../supabaseClient";
 
 const AuthPage = () => {
   const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState(null);
   const [message, setMessage] = useState("");
@@ -12,19 +12,28 @@ const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // 🔁 Centralized redirect logic
+  const redirectAfterLogin = () => {
+    const redirect = localStorage.getItem("post_login_redirect") || "/";
+    localStorage.removeItem("post_login_redirect");
+    navigate(redirect);
+  };
+
   useEffect(() => {
-    // Get current session
+    // Get existing session
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setLoading(false);
-      if (data.session) navigate("/");
+      if (data.session) redirectAfterLogin();
     });
 
-    // Listen for auth changes
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      if (session) navigate("/");
-    });
+    // Listen for login/signup events
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+        if (session) redirectAfterLogin();
+      }
+    );
 
     return () => listener.subscription.unsubscribe();
   }, []);
@@ -32,26 +41,39 @@ const AuthPage = () => {
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: window.location.origin + "/" },
+      options: {
+        redirectTo: window.location.origin + "/login",
+      },
     });
+
     if (error) setMessage(error.message);
   };
 
   const handleEmailAuth = async () => {
     setMessage("");
+
     if (isSignup) {
-      const { data, error } = await supabase.auth.signUp({ email, password });
-      if (error) setMessage(error.message);
-      else setMessage("Signup successful! Check your email to confirm.");
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        setMessage(error.message);
+      } else {
+        setMessage("Signup successful! Check your email to confirm.");
+      }
     } else {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
       if (error) {
         if (error.message.includes("Email not confirmed")) {
           setMessage("Email not confirmed. Please check your inbox.");
-        } else setMessage(error.message);
+        } else {
+          setMessage(error.message);
+        }
       } else {
         setSession(data.session);
-        navigate("/");
+        redirectAfterLogin();
       }
     }
   };
@@ -68,8 +90,10 @@ const AuthPage = () => {
     return (
       <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
         <h2>You are already signed in as {session.user.email}</h2>
-        <button onClick={() => navigate("/")}>Go to Dashboard</button>
-        <button onClick={handleLogout} style={{ marginLeft: "10px" }}>Sign Out</button>
+        <button onClick={() => navigate("/")}>Go Home</button>
+        <button onClick={handleLogout} style={{ marginLeft: "10px" }}>
+          Sign Out
+        </button>
       </div>
     );
   }
@@ -77,9 +101,9 @@ const AuthPage = () => {
   return (
     <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
       <h1>{isSignup ? "Sign Up" : "Login"}</h1>
+
       {message && <p style={{ color: "red" }}>{message}</p>}
 
-      {/* Email / Password Form */}
       <div style={{ marginBottom: "20px" }}>
         <input
           type="email"
@@ -88,6 +112,7 @@ const AuthPage = () => {
           onChange={(e) => setEmail(e.target.value)}
           style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
         />
+
         <input
           type="password"
           placeholder="Password"
@@ -95,15 +120,17 @@ const AuthPage = () => {
           onChange={(e) => setPassword(e.target.value)}
           style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
         />
-        
-        <button onClick={handleEmailAuth} style={{ width: "100%", padding: "10px" }}>
+
+        <button
+          onClick={handleEmailAuth}
+          style={{ width: "100%", padding: "10px" }}
+        >
           {isSignup ? "Sign Up" : "Login"}
         </button>
       </div>
 
       <hr />
 
-      {/* Google OAuth */}
       <button
         onClick={handleGoogleLogin}
         style={{ width: "100%", padding: "10px", marginTop: "10px" }}
@@ -114,7 +141,10 @@ const AuthPage = () => {
       <p style={{ marginTop: "15px" }}>
         {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
         <span
-          onClick={() => { setIsSignup(!isSignup); setMessage(""); }}
+          onClick={() => {
+            setIsSignup(!isSignup);
+            setMessage("");
+          }}
           style={{ color: "blue", cursor: "pointer" }}
         >
           {isSignup ? "Login" : "Sign Up"}
