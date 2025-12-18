@@ -1,7 +1,8 @@
 import React from 'react';
 import CategoryCard from './CategoryCard.jsx';
+import ProductCard from '../Product/ProductCard.jsx';
 
-const ProductContent = ({ Categories }) => {
+const CatergoryContent = ({ Categories }) => {
   let content;
 
   switch (Categories) {
@@ -12,10 +13,6 @@ const ProductContent = ({ Categories }) => {
 
     case "entry":
       content = <CategoryCard Name="Entry Levels" tbName="entrylevels" route="entry_levels" />;
-      break;
-
-    case "careers":
-      content = <CategoryCard Name="Careers" tbName="careers" route="careers" />;
       break;
 
     default:
@@ -35,4 +32,4 @@ const ProductContent = ({ Categories }) => {
     </div>
   );
 };
-export default ProductContent;
+export default CatergoryContent;

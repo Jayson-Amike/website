@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import supabase from "../../supabaseClient";
+import supabase from "../../../supabaseClient";
 import { useEffect, useState } from "react";
 
 const CategoryCard = ({ Name, tbName, route }) => {
-  const [products, setProducts] = useState([]);
+  const [category, setcategory] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchProducts() {
+    async function fetchCategory() {
       const { data, error } = await supabase.from(tbName).select("*");
-      if (!error) setProducts(data || []);
+      if (!error) setcategory(data || []);
     }
 
-    fetchProducts();
+    fetchCategory();
   }, [tbName]);
 
   return (
@@ -20,21 +20,21 @@ const CategoryCard = ({ Name, tbName, route }) => {
       <h1>{Name}</h1>
 
       <div className="category-card-container">
-        {products.map((product) => (
+        {category.map((category) => (
           <div
             className="product-card"
-            key={product.id}
+            key={category.id}
             onClick={() =>
-              navigate(`/products/${route}/${product.id}`)
+              navigate(`/products/${route}/${category.slug}`)
             }
           >
-            <h3 className="product-title">{product.name}</h3>
+            <h3 className="product-title">{category.name}</h3>
             <img
-              src={product.imageurl}
-              alt={product.name}
+              src={category.imageurl}
+              alt={category.name}
               className="product-img"
             />
-            <p className="product-issuer">{product.description}</p>
+            <p className="product-issuer">{category.description}</p>
           </div>
         ))}
       </div>

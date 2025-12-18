@@ -15,10 +15,12 @@ import ProfilePage2 from "./components/Customer/Profile Page/profilePage2.jsx";
 import AdminDashboard from "./components/Admin/components/AdminDashboard";
 import CustomerLayout from "./components/Customer/CustomerLayout";
 import ProductLayout from "./components/Product/ProductLayout.jsx";
-import ProductContent from "./components/Product/ProductContent.jsx";
 import ProductDetails from "./components/Product/ProductDetails.jsx";
 import CartPage from "./components/Cart/CartPage.jsx"; // Cart page
-
+import ProductCard from "./components/Product/Product/ProductCard.jsx";
+import CatergoryContent from "./components/Product/caregory/CatergoryContent.jsx";
+import ProductContent from "./components/Product/Product/ProductContent.jsx";
+// import ProductPage from "./components/Product/Product/ProductPage.jsx";
 export default function App() {
   return (
     <AuthProvider>
@@ -49,14 +51,19 @@ export default function App() {
 
             {/* Products */}
             <Route path="/products" element={<ProductLayout />}>
-              <Route index element={<ProductContent Categories="all" />} />
+              <Route index element={<ProductContent />} />
 
-              <Route path="career_fields" element={<ProductContent Categories="career" />} />
-              <Route path="entry_levels" element={<ProductContent Categories="entry" />} />
-              <Route path="careers" element={<ProductContent Categories="careers" />} />
+              <Route path="career_fields" element={<CatergoryContent Categories="career" />} />
+              <Route path="entry_levels" element={<CatergoryContent Categories="entry" />} />
+              <Route path="careers" element={<ProductContent />} />
 
               {/* 👇 FULL PAGE DETAILS */}
               <Route path="careers/:id" element={<ProductDetails table="careers" />} />
+
+                          {/* <Route
+              path=":category/:name"
+              element={<ProductPage />}
+            /> */}
             </Route>
 
             {/* Cart */}
