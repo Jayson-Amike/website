@@ -1,30 +1,25 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import supabase from "../../../supabaseClient";
 import { useEffect, useState } from "react";
 
 const ProductCard = ({ Name, tbName, route, filtervalue }) => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  const searchParams = new URLSearchParams(location.search);
-  const table = searchParams.get("table");
-  const categoryId = searchParams.get("category_id");
+  const location = useLocation();
 
-  console.log("Filter Value:", filtervalue);
-  console.log("Table Name:", tbName);
-  console.log("Route:", route);
+  // 👇 get data from navigation state
+  const {
+    table,
+    category_id: categoryId,
+    category_name,
+    description,
+  } = location.state || {};
 
-  console.log("searchParams:", searchParams.toString()=="");
-  console.log("table:", table);
-  console.log("categoryId:", categoryId);
   useEffect(() => {
     async function fetchProducts() {
       let query = supabase.from(tbName).select("*");
 
-      // 👇 apply filter if provided
-      // if (filtervalue?.column && filtervalue?.value !== undefined) {
-      //   query = query.eq(filtervalue.column, filtervalue.value);
-      // }
-       if (table!=null && categoryId!=null) {
+      if (table && categoryId) {
         query = query.eq(table, categoryId);
       }
 
@@ -34,11 +29,14 @@ const ProductCard = ({ Name, tbName, route, filtervalue }) => {
     }
 
     fetchProducts();
-  }, [tbName, filtervalue]);
+  }, [tbName, table, categoryId]);
+
+  const title = category_name ? `${category_name} ${Name}` : Name;
 
   return (
     <div className="category-container">
-      <h1>{Name}</h1>
+      <h1>{title}</h1>
+      <p>{description}</p>
 
       <div className="category-card-container">
         {products.map((product) => (
@@ -56,7 +54,7 @@ const ProductCard = ({ Name, tbName, route, filtervalue }) => {
               className="product-img"
             />
             <p className="product-issuer">{product.description}</p>
-            <p>{product.price}</p>
+            <p>{product.price}$</p>
           </div>
         ))}
       </div>
