@@ -29,13 +29,12 @@ import CustomerLayout from "./components/Customer/CustomerLayout";
 
 /* PRODUCTS */
 import ProductLayout from "./components/Product/ProductLayout.jsx";
-import ProductContent from "./components/Product/ProductContent.jsx";
 import ProductDetails from "./components/Product/ProductDetails.jsx";
-
-/* CART / CHECKOUT */
-import CartPage from "./components/Cart/CartPage.jsx";
-import CheckoutPage from "./components/Checkout/CheckoutPage";
-
+import CartPage from "./components/Cart/CartPage.jsx"; // Cart page
+import ProductCard from "./components/Product/Product/ProductCard.jsx";
+import CatergoryContent from "./components/Product/caregory/CatergoryContent.jsx";
+import ProductContent from "./components/Product/Product/ProductContent.jsx";
+import ProductPage from "./components/Product/Product/ProductPage.jsx";
 export default function App() {
   return (
     <AuthProvider>
@@ -66,24 +65,14 @@ export default function App() {
 
             {/* Products */}
             <Route path="/products" element={<ProductLayout />}>
-              <Route index element={<ProductContent Categories="all" />} />
-              <Route
-                path="career_fields"
-                element={<ProductContent Categories="career" />}
-              />
-              <Route
-                path="entry_levels"
-                element={<ProductContent Categories="entry" />}
-              />
-              <Route
-                path="careers"
-                element={<ProductContent Categories="careers" />}
-              />
-              <Route
-                path="careers/:id"
-                element={<ProductDetails table="careers" />}
-              />
+              <Route index element={<ProductContent />} />
+              <Route path="career_fields" element={<CatergoryContent Categories="career" />} />
+              <Route path="entry_levels" element={<CatergoryContent Categories="entry" />} />
+              <Route path="careers" element={<ProductContent />} />
+              <Route path="careers/:id" element={<ProductDetails table="careers" />} />
+              <Route path=":route" element={< ProductLayout/>} />   {/* fixed */}
             </Route>
+
 
             {/* Cart */}
             <Route path="/cart" element={<CartPage />} />

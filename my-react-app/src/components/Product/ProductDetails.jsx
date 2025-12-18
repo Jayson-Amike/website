@@ -46,9 +46,15 @@ const ProductDetails = ({ table }) => {
 
   return (
     <div className="product-details">
-      <img src={product.imageurl} alt={product.name} />
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
+      <div className="product-details-left">
+        <img src={product.imageurl} alt={product.name} />
+      </div>
+
+      <div className="product-details-right">
+        <h1>{product.name}</h1>
+        <p>{product.description}</p>
+                    <p>{product.price}</p>
+
 
       <input
         type="number"
