@@ -1,30 +1,42 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import supabase from "../../../supabaseClient";
-import ProductCard from "./ProductCard";
-const { category, slug } = useParams();
 
 const ProductPage = () => {
-  const { category, name } = useParams();
-  const [product, setProduct] = useState(null);
+  const { route } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const table = searchParams.get("table");
+  const categoryId = searchParams.get("category_id");
+
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    async function fetchProduct() {
-      const { data } = await supabase
-        .from(category)
-        .select("*")
-  .eq("slug", slug)
-        .single();
+    if (!table || !categoryId) return;
 
-      setProduct(data);
+    async function fetchProducts() {
+      const { data, error } = await supabase
+        .from(table)
+        .select("*")
+        .eq("category_id", categoryId);
+
+      if (!error) setProducts(data || []);
     }
 
-    fetchProduct();
-  }, [category, name]);
+    fetchProducts();
+  }, [table, categoryId]);
 
-  if (!product) return <p>Loading...</p>;
-
-  return <ProductCard product={product} isPage />;
+  return (
+    <div>
+      <h2>Products in {route}</h2>
+      {products.map((p) => (
+        <div key={p.id}>
+          <h3>{p.name}</h3>
+          <p>{p.description}</p>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default ProductPage;

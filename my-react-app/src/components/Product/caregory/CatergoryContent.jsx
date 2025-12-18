@@ -7,7 +7,7 @@ const CatergoryContent = ({ Categories }) => {
 
   switch (Categories) {
     case "career":
-      content = <CategoryCard Name="Career Fields" tbName="careerfieldcategories"   route="career_fields"
+      content = <CategoryCard Name="Career Fields" tbName="careerfieldcategories"   route="career_fields"  filtervalue={{ column: "category_id" }}
 />;
       break;
 
@@ -18,8 +18,8 @@ const CatergoryContent = ({ Categories }) => {
     default:
       content = (
         <>
-          <CategoryCard Name="Career Fields" tbName="careerfieldcategories" />
-          <CategoryCard Name="Entry Levels" tbName="entrylevels" />
+          <CategoryCard Name="Career Fields" tbName="careerfieldcategories" route="career_fields"  filtervalue={{ column: "category_id" }}/>
+          <CategoryCard Name="Entry Levels" tbName="entrylevels" route="entry_levels" />
         </>
       );
   }

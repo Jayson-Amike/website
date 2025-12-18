@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import supabase from "../../../supabaseClient";
 import { useEffect, useState } from "react";
 
-const CategoryCard = ({ Name, tbName, route }) => {
+const CategoryCard = ({ Name, tbName, route, filtervalue }) => {
   const [category, setcategory] = useState([]);
   const navigate = useNavigate();
 
@@ -25,7 +25,9 @@ const CategoryCard = ({ Name, tbName, route }) => {
             className="product-card"
             key={category.id}
             onClick={() =>
-              navigate(`/products/${route}/${category.slug}`)
+              // navigate(`/products/${route}?table=${tbName}&category_id=${category.id}`)
+                navigate(`/products/careers?table=${tbName}&category_id=${category.id}`)
+
             }
           >
             <h3 className="product-title">{category.name}</h3>
