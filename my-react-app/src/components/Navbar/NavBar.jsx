@@ -19,7 +19,7 @@ const Navbar = () => {
       </a>
 
       <nav style={styles.nav}>
-        <a href="/products/everything" style={styles.navLink}>Careers</a>
+        <a href="/products/careers" style={styles.navLink}>Careers</a>
         <a href="/products/career_fields" style={styles.navLink}>Career Fields</a>
         <a href="/products/entry_levels" style={styles.navLink}>Entry Levels</a>
         <a href="/profile" style={styles.navLink}>Profile</a>

@@ -50,10 +50,13 @@ export default function App() {
             {/* Products */}
             <Route path="/products" element={<ProductLayout />}>
               <Route index element={<ProductContent Categories="all" />} />
+
               <Route path="career_fields" element={<ProductContent Categories="career" />} />
               <Route path="entry_levels" element={<ProductContent Categories="entry" />} />
-              <Route path="everything" element={<ProductContent Categories="everything" />} />
-              <Route path=":table/:id" element={<ProductDetails />} />
+              <Route path="careers" element={<ProductContent Categories="careers" />} />
+
+              {/* 👇 FULL PAGE DETAILS */}
+              <Route path="careers/:id" element={<ProductDetails table="careers" />} />
             </Route>
 
             {/* Cart */}

@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import supabase from "../../supabaseClient";
 import { useCart } from "../Cart/CartContext";
 
-const ProductDetails = () => {
-  const { table, id } = useParams();
+const ProductDetails = ({ table }) => {
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
@@ -17,8 +17,10 @@ const ProductDetails = () => {
         .select("*")
         .eq("id", id)
         .single();
+
       if (!error) setProduct(data);
     }
+
     fetchProduct();
   }, [table, id]);
 

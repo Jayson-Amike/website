@@ -8,16 +8,15 @@ const ProductContent = ({ Categories }) => {
     case "career":
       content = <CategoryCard Name="Career Fields" tbName="careerfieldcategories" />;
       break;
+
     case "entry":
       content = <CategoryCard Name="Entry Levels" tbName="entrylevels" />;
       break;
-       case "everything":
-      content = (
-        <>
-          <CategoryCard Name="Careers" tbName="careers" />
-        </>
-      );
+
+    case "careers":
+      content = <CategoryCard Name="Careers" tbName="careers" />;
       break;
+
     default:
       content = (
         <>
@@ -27,7 +26,12 @@ const ProductContent = ({ Categories }) => {
       );
   }
 
-  return <div className="product-container">{content}</div>;
-};
+  return (
+    <div className="product-container">
+      {content}
 
+
+    </div>
+  );
+};
 export default ProductContent;
