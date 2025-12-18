@@ -25,10 +25,16 @@ const CategoryCard = ({ Name, tbName, route, filtervalue }) => {
             className="product-card"
             key={category.id}
             onClick={() =>
-              // navigate(`/products/${route}?table=${tbName}&category_id=${category.id}`)
-                navigate(`/products/careers?table=${tbName}&category_id=${category.id}`)
+  navigate("/products/careers", {
+    state: {
+      table: tbName,
+      category_id: category.id,
+      category_name: category.name,
+      description: category.description
+    }
+  })
+}
 
-            }
           >
             <h3 className="product-title">{category.name}</h3>
             <img

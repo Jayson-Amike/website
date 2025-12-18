@@ -53,7 +53,7 @@ const ProductDetails = ({ table }) => {
       <div className="product-details-right">
         <h1>{product.name}</h1>
         <p>{product.description}</p>
-                    <p>{product.price}</p>
+                    <p>{product.price}$</p>
 
 
       <input
