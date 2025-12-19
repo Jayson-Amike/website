@@ -1,0 +1,5 @@
+create table public.inventory (
+  id serial not null,
+  quantity integer not null default 0,
+  constraint inventory_pkey primary key (id)
+) TABLESPACE pg_default;
