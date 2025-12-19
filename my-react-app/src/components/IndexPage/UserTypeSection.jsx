@@ -10,7 +10,6 @@ const UserTypeSection = () => (
         <p>
           Not sure where your skills can take you? Explore career paths, skills  , and discover opportunities tailored to your verified achievements.
         </p>
-        <p><a href="/organizations" style={{ color: '#007bff', fontWeight: 'bold' }}>Learn More &rarr;</a></p>
       </div>
 
       {/* Card for Individuals */}
@@ -19,7 +18,6 @@ const UserTypeSection = () => (
         <p>
           Collect, manage, and share your verified skills and achievements across social media and professional networks to open new career doors.
         </p>
-        <p><a href="/individuals" style={{ color: '#007bff', fontWeight: 'bold' }}>Find Out How &rarr;</a></p>
       </div>
     </div>
   </section>
