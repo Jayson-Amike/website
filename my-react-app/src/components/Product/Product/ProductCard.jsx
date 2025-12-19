@@ -1,13 +1,13 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import supabase from "../../../supabaseClient";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 const ProductCard = ({ Name, tbName, route, filtervalue }) => {
   const [products, setProducts] = useState([]);
+  const [sortBy, setSortBy] = useState("default"); // State for sorting
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 👇 get data from navigation state
   const {
     table,
     category_id: categoryId,
@@ -24,28 +24,62 @@ const ProductCard = ({ Name, tbName, route, filtervalue }) => {
       }
 
       const { data, error } = await query;
-
       if (!error) setProducts(data || []);
     }
 
     fetchProducts();
   }, [tbName, table, categoryId]);
 
+  // Logic to handle sorting based on the dropdown selection
+  const sortedProducts = useMemo(() => {
+    let result = [...products];
+    if (sortBy === "price-asc") {
+      result.sort((a, b) => a.price - b.price);
+    } else if (sortBy === "price-desc") {
+      result.sort((a, b) => b.price - a.price);
+    } else if (sortBy === "name-asc") {
+      result.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === "name-desc") {
+      result.sort((a, b) => b.name.localeCompare(a.name));
+    }
+    return result;
+  }, [products, sortBy]);
+
   const title = category_name ? `${category_name} ${Name}` : Name;
 
   return (
     <div className="category-container">
-      <h1>{title}</h1>
-      <p>{description}</p>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div>
+          <h1>{title}</h1>
+          <p>{description}</p>
+        </div>
+
+        {/* Sorting Dropdown */}
+        <div className="sort-container">
+          <label htmlFor="sort" style={{ marginRight: "10px", fontWeight: "bold" }}>Sort By:</label>
+          <select 
+            id="sort" 
+            value={sortBy} 
+            onChange={(e) => setSortBy(e.target.value)}
+            style={{ padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
+          >
+            <option value="default">Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name: A-Z</option>
+            <option value="name-desc">Name: Z-A</option>
+          </select>
+        </div>
+      </div>
 
       <div className="category-card-container">
-        {products.map((product) => (
+        {/* Render sortedProducts instead of products */}
+        {sortedProducts.map((product) => (
           <div
             className="product-card"
             key={product.id}
-            onClick={() =>
-              navigate(`/products/${route}/${product.id}`)
-            }
+            onClick={() => navigate(`/products/${route}/${product.id}`)}
           >
             <h3 className="product-title">{product.name}</h3>
             <img
@@ -54,7 +88,7 @@ const ProductCard = ({ Name, tbName, route, filtervalue }) => {
               className="product-img"
             />
             <p className="product-issuer">{product.description}</p>
-            <p>{product.price}$</p>
+            <p className="product-price">{product.price}$</p>
           </div>
         ))}
       </div>

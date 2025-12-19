@@ -26,6 +26,7 @@ import HomePage from "./components/IndexPage/HomePage";
 import ProfilePage from "./components/Customer/Profile Page/profilePage.jsx";
 import ProfilePage2 from "./components/Customer/Profile Page/profilePage2.jsx";
 import CustomerLayout from "./components/Customer/CustomerLayout";
+import SimpleProfile from "./components/Customer/Profile Page/newprofile/SimpleProfile.jsx";
 
 /* PRODUCTS */
 import ProductLayout from "./components/Product/ProductLayout.jsx";
@@ -64,7 +65,8 @@ export default function App() {
             <Route path="/login" element={<AuthPage />} />
 
             {/* Profile */}
-            <Route path="/profile" element={<ProfilePage2 />} />
+            <Route path="/profile" element={<SimpleProfile />} />
+            {/* <Route path="/profile" element={<ProfilePage2 />} /> */}
             <Route path="/profile2" element={<ProfilePage />} />
 
             {/* Products */}
