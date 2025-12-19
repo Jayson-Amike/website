@@ -12,7 +12,7 @@ git clone https://github.com/Jayson-Amike/product.git
 cd product
 
 you can also download a zip and extract is as well but make sure it points to product 
-Then install any directories 
+Then install any directories as vite should automatically download
 npm install
 
 To connect to the Supabase(backend-as-a-service) the .env file has the url and key in it to connect to to the system. Supabase does not need for you to create an account as you don't have to access the main data so you should be fine
