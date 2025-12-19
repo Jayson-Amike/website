@@ -19,7 +19,7 @@ To connect to the Supabase(backend-as-a-service) the .env file has the url and k
 
 The Supabase handles sql code in its editor which is provided in the link below
 
-Database SQL https://github.com/Jayson-Amike/website/tree/sql/SQLcodes
+Database SQL https://github.com/Jayson-Amike/website/tree/sql/SQLcodes (can be extracted as a zip file)
 
 then to run the program on your system 
 npm run dev
