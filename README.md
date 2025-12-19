@@ -1,5 +1,7 @@
 How to download the source code and install software/packages and run the program locally
-The Software you want to have installed on your device is Node.js version 18 or higher and run it using npm. 
+
+https://github.com/Jayson-Amike/website
+Before installing make sure the software you want to have installed on your device is Node.js version 18 or higher and run it using npm. 
 Make sure git is downloaded and we used visual studio code as our editor 
 To download the source code make sure your repository points to product and clone it 
 
