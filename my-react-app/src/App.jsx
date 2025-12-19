@@ -25,10 +25,10 @@ import AdminDashboard from "./components/Admin/components/AdminDashboard";
 
 /* CUSTOMER */
 import HomePage from "./components/IndexPage/HomePage";
-import ProfilePage from "./components/Customer/Profile Page/profilePage.jsx";
-import ProfilePage2 from "./components/Customer/Profile Page/profilePage2.jsx";
+import ProfilePage from "./components/Customer/Profile_Page/profilePage.jsx";
+import ProfilePage2 from "./components/Customer/Profile_Page/profilePage2.jsx";
 import CustomerLayout from "./components/Customer/CustomerLayout";
-import SimpleProfile from "./components/Customer/Profile Page/newprofile/SimpleProfile.jsx";
+import SimpleProfile from "./components/Customer/Profile_Page/newprofile/SimpleProfile.jsx";
 
 /* PRODUCTS */
 import ProductLayout from "./components/Product/ProductLayout.jsx";
