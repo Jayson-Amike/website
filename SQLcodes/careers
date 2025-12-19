@@ -1,0 +1,14 @@
+create table public.careers (
+  id serial not null,
+  entrylevels integer null,
+  careerfieldcategories integer null,
+  name character varying not null,
+  description text null,
+  imageurl character varying null,
+  price numeric(10, 2) null,
+  inventory integer not null,
+  constraint careers_pkey primary key (id),
+  constraint careers_careerfieldcategories_fkey foreign KEY (careerfieldcategories) references careerfieldcategories (id) on delete set null,
+  constraint careers_entrylevels_fkey foreign KEY (entrylevels) references entrylevels (id) on delete set null,
+  constraint careers_inventory_fkey foreign KEY (inventory) references inventory (id) on delete set null
+) TABLESPACE pg_default;
