@@ -7,8 +7,8 @@ export default function AdminNavBar() {
   <div style={styles.logo}>MyApp</div>
 
   <nav style={styles.nav}>
-    <a href="/admin/orders" style={styles.navLink}>
-      Sale Information
+    <a href="/admin" style={styles.navLink}>
+      Sale Overiew
     </a>
     <a href="/admin/users" style={styles.navLink}>
       Users Information

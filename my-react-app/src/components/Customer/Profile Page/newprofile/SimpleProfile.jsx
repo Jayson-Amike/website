@@ -17,7 +17,6 @@ const SimpleProfile = () => {
       } = await supabase.auth.getUser();
 
       if (!user) return setUser(null);
-
       setUser(user);
 
       const { data } = await supabase
@@ -37,13 +36,9 @@ const SimpleProfile = () => {
 
   return (
     <div className="profile-wrapper">
+      {/* Tabs */}
       <div className="profile-tabs">
-        <button
-          className={activeTab === "profile" ? "active" : ""}
-          onClick={() => setActiveTab("profile")}
-        >
-          Profile
-        </button>
+        
         <button
           className={activeTab === "orders" ? "active" : ""}
           onClick={() => setActiveTab("orders")}
@@ -52,6 +47,7 @@ const SimpleProfile = () => {
         </button>
       </div>
 
+      {/* Profile Tab */}
       {activeTab === "profile" && (
         <div className="profile-card">
           {!editing ? (
@@ -60,10 +56,11 @@ const SimpleProfile = () => {
                 {profile.username?.[0]?.toUpperCase() || "U"}
               </div>
 
-              <h2 className="profile-name">{profile.username}</h2>
+              <h2 className="profile-name">{profile.username || "Unknown"}</h2>
               <p className="profile-email">{profile.email}</p>
 
               <div className="profile-divider" />
+
               <p className="profile-bio">{profile.bio || "No bio yet."}</p>
 
               <button
@@ -80,11 +77,13 @@ const SimpleProfile = () => {
                 setProfile(updated);
                 setEditing(false);
               }}
+              onCancel={() => setEditing(false)}
             />
           )}
         </div>
       )}
 
+      {/* Orders Tab */}
       {activeTab === "orders" && <OrderHistory />}
     </div>
   );

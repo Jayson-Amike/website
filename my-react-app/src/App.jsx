@@ -15,7 +15,7 @@ import AuthPage from "./components/Auth/AuthPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 /* ADMIN */
-import Users from "./components/Admin/components/User";
+import Users from "./components/Admin/components/UsersTable.jsx";
 import AdminPage from "./components/Admin/AdminPage";
 import Orders from "./components/Admin/components/orders";
 import Products from "./components/Admin/components/Product";
@@ -40,6 +40,8 @@ import ProductPage from "./components/Product/Product/ProductPage.jsx";
 import CheckoutPage from "./components/Checkout/CheckoutPage";
 import OrderConfirmationPage from "./components/Checkout/OrderConfirmationPage";
 
+import UserDashboard from "./components/Admin/components/UserDashboard"; 
+
 export default function App() {
   return (
     <AuthProvider>
@@ -54,6 +56,8 @@ export default function App() {
             <Route path="orders" element={<Orders />} />
             <Route path="users" element={<Users />} />
             <Route path="products" element={<Products />} />
+              <Route path="users/:userId" element={<UserDashboard />} /> {/* <-- New Route */}
+
           </Route>
 
           {/* ================= CUSTOMER ================= */}
