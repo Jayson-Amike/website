@@ -7,7 +7,6 @@ Make sure git is downloaded and we used visual studio code as our editor
 To download the source code make sure your repository points to product and clone it 
 
 Source code link https://github.com/Jayson-Amike/website/tree/product/my-react-app
-Database SQL https://github.com/Jayson-Amike/website/tree/sql/SQLcodes
 
 git clone https://github.com/Jayson-Amike/product.git
 cd product
@@ -18,7 +17,9 @@ npm install
 
 To connect to the Supabase(backend-as-a-service) the .env file has the url and key in it to connect to to the system. Supabase does not need for you to create an account as you don't have to access the main data so you should be fine
 
-The Supabase handles sql code in its editor which is provided in eclass on a doc 
+The Supabase handles sql code in its editor which is provided in the link below
+
+Database SQL https://github.com/Jayson-Amike/website/tree/sql/SQLcodes
 
 then to run the program on your system 
 npm run dev
