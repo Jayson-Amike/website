@@ -1,3 +1,4 @@
+﻿import React from 'react';
 // NavBar.jsx
 import styles from './styles';
 
@@ -24,3 +25,4 @@ export default function AdminNavBar() {
 
   );
 }
+

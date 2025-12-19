@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import { useEffect, useState, useMemo } from "react";
 import supabase from "../../../../supabaseClient";
 
@@ -118,7 +119,7 @@ const OrderHistory = () => {
               {filteredOrders.map((order) => (
                 <tr key={order.id}>
                   <td style={td}>#{order.id}</td>
-                  <td style={td}>{order.product_name || "—"}</td>
+                  <td style={td}>{order.product_name || "â€”"}</td>
                   <td
                     style={{
                       ...td,
@@ -130,7 +131,7 @@ const OrderHistory = () => {
                           : "#555",
                     }}
                   >
-                    {order.status || "—"}
+                    {order.status || "â€”"}
                   </td>
                   <td style={td}>${Number(order.price).toFixed(2)}</td>
                   <td style={td}>{new Date(order.created_at).toLocaleDateString()}</td>
@@ -161,3 +162,4 @@ const td = { padding: "12px" };
 const filterBar = { display: "flex", gap: "12px", marginBottom: "16px" };
 const filterInput = { padding: "8px 10px", borderRadius: "4px", border: "1px solid #ccc", fontSize: "14px" };
 const filterSelect = { padding: "8px 10px", borderRadius: "4px", border: "1px solid #ccc", fontSize: "14px" };
+

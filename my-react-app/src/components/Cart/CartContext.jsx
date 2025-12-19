@@ -1,3 +1,4 @@
+﻿import React from 'react';
 // src/components/Cart/CartContext.jsx
 import { createContext, useContext, useState, useEffect } from "react";
 import supabase from "../../supabaseClient";
@@ -192,3 +193,4 @@ export const CartProvider = ({ children }) => {
 };
 
 export const useCart = () => useContext(CartContext);
+

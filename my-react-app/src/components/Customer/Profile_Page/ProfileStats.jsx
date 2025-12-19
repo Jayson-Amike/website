@@ -1,3 +1,4 @@
+﻿import React from 'react';
 
 const Numbadges= 5;
 const ProfileStats = () => {

@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import supabase from "../../../supabaseClient";
@@ -48,3 +49,4 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+

@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import Order_Table from "../../Customer/dummy_database/OrderTable";
 import AdminDashboard from "../AdminDashboardTemplate";
 
@@ -32,3 +33,4 @@ export default function Orders() {
     </div>
   );
 }
+

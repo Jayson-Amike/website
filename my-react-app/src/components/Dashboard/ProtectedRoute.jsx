@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import supabase from "../../supabaseClient";
@@ -24,3 +25,4 @@ export default function ProtectedRoute({ children }) {
 
   return children;
 }
+

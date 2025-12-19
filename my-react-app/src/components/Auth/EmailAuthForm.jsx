@@ -1,3 +1,4 @@
+﻿import React from 'react';
 export default function EmailAuthForm({ email, setEmail, password, setPassword, isSignup, onSubmit }) {
   return (
     <div style={{ marginBottom: "20px" }}>
@@ -21,3 +22,4 @@ export default function EmailAuthForm({ email, setEmail, password, setPassword, 
     </div>
   );
 }
+

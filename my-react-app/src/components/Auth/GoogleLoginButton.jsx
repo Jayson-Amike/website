@@ -1,3 +1,4 @@
+﻿import React from 'react';
 export default function GoogleLoginButton({ onLogin }) {
   return (
     <button
@@ -8,3 +9,4 @@ export default function GoogleLoginButton({ onLogin }) {
     </button>
   );
 }
+

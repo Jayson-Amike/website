@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import { MapPin, CheckCircle } from "lucide-react";
 import ProfileStats from "./ProfileStats.jsx";
 
@@ -39,3 +40,4 @@ const ProfileInfo = ({ profile }) => {
 };
 
 export default ProfileInfo;
+

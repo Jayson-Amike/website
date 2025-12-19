@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../../supabaseClient";
@@ -12,7 +13,7 @@ const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // 🔁 Centralized redirect logic
+  // ðŸ” Centralized redirect logic
   const redirectAfterLogin = () => {
     const redirect = localStorage.getItem("post_login_redirect") || "/";
     localStorage.removeItem("post_login_redirect");
@@ -155,3 +156,4 @@ const AuthPage = () => {
 };
 
 export default AuthPage;
+

@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import { useNavigate } from "react-router-dom";
 import supabase from "../../../supabaseClient";
 import { useEffect, useState } from "react";
@@ -51,3 +52,4 @@ const CategoryCard = ({ Name, tbName, route, filtervalue }) => {
 };
 
 export default CategoryCard;
+

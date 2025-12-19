@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import Order from "./components/orders.jsx";
 export default function AdminDashboard({ title, description}) {
   return (
@@ -7,3 +8,4 @@ export default function AdminDashboard({ title, description}) {
     </div>
   );
 }
+

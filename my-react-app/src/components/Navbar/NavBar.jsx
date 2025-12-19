@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import { useAuth } from "../Auth/AuthContext";
 import { useCart } from "../Cart/CartContext"; // <-- import cart context
 import supabase from "../../supabaseClient";
@@ -46,3 +47,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

@@ -1,3 +1,4 @@
+﻿import React from 'react';
 // src/components/Checkout/CheckoutPage.jsx
 import { useCart } from "../Cart/CartContext";
 import { useAuth } from "../Auth/AuthContext";
@@ -221,7 +222,7 @@ const CheckoutPage = () => {
           {careers.map((career) => (
             <li key={career.id} style={{ marginBottom: "15px", borderBottom: "1px solid #eee" }}>
               <strong>{career.name}</strong>
-              <p>Qty: {career.quantity} × ${career.price.toFixed(2)}</p>
+              <p>Qty: {career.quantity} Ã— ${career.price.toFixed(2)}</p>
               <p>Subtotal: ${(career.price * career.quantity).toFixed(2)}</p>
             </li>
           ))}
@@ -233,3 +234,4 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+

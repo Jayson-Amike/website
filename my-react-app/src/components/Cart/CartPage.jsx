@@ -1,3 +1,4 @@
+﻿import React from 'react';
 // src/components/Cart/CartPage.jsx
 import { useCart } from "./CartContext";
 import { useEffect, useState } from "react";
@@ -80,7 +81,7 @@ const CartPage = () => {
                 }
                 style={{ padding: "5px 10px" }}
               >
-                −
+                âˆ’
               </button>
 
               <span style={{ margin: "0 10px" }}>{product.quantity}</span>
@@ -118,3 +119,4 @@ const CartPage = () => {
 };
 
 export default CartPage;
+

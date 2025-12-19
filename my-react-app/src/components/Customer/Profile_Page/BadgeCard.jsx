@@ -1,3 +1,4 @@
+﻿import React from 'react';
 const badges = [
   {
     id: 1,

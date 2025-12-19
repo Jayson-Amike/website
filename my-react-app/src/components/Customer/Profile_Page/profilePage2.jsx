@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import { useEffect, useState } from "react";
 import supabase from "../../../supabaseClient.js";
 
@@ -13,7 +14,7 @@ const ProfilePage2 = () => {
 
   useEffect(() => {
     async function getUserAndProfile() {
-      // 1️⃣ Check if user is logged in
+      // 1ï¸âƒ£ Check if user is logged in
       const {
         data: { user },
       } = await supabase.auth.getUser();
@@ -25,7 +26,7 @@ const ProfilePage2 = () => {
 
       setUser(user);
 
-      // 2️⃣ Fetch profile data
+      // 2ï¸âƒ£ Fetch profile data
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
@@ -42,12 +43,12 @@ const ProfilePage2 = () => {
     getUserAndProfile();
   }, []);
 
-  // ⏳ Loading state
+  // â³ Loading state
   if (loading) {
     return <p>Loading profile...</p>;
   }
 
-  // 🚫 Not logged in
+  // ðŸš« Not logged in
   if (!user) {
     return <p>You must be logged in to view your profile.</p>;
   }
@@ -71,3 +72,4 @@ const ProfilePage2 = () => {
 };
 
 export default ProfilePage2;
+
