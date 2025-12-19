@@ -8,7 +8,7 @@ To download the source code make sure your repository points to product and clon
 
 source link https://github.com/Jayson-Amike/website/tree/product/my-react-app
 
-git clone https://github.com/your-username/product.git
+git clone https://github.com/Jayson-Amike/product.git
 cd product
 
 you can also download a zip and extract is as well but make sure it points to product 
