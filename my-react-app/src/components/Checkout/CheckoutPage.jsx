@@ -86,12 +86,27 @@ const CheckoutPage = () => {
 
       // Reduce inventory
       for (const career of careers) {
-        const { error } = await supabase
-          .from("careers")
-          .update({ inventory: career.inventory - career.quantity })
-          .eq("id", career.id);
-        if (error) throw new Error(error.message);
-      }
+  // career.inventory is the foreign key pointing to inventory.id
+  const { data, error } = await supabase
+    .from("inventory")
+    .select("quantity")
+    .eq("id", career.inventory)
+    .single();
+
+  if (error) throw new Error(error.message);
+
+  if (data.quantity < career.quantity) {
+    throw new Error(`Not enough stock for ${career.name}. Available: ${data.quantity}`);
+  }
+
+  // Update the quantity in the inventory table
+  const { error: updateError } = await supabase
+    .from("inventory")
+    .update({ quantity: data.quantity - career.quantity })
+    .eq("id", career.inventory);
+
+  if (updateError) throw new Error(updateError.message);
+}
 
       // Save order if user is logged in
       if (session?.user) {
