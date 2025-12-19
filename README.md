@@ -6,7 +6,8 @@ Before installing make sure the software you want to have installed on your devi
 Make sure git is downloaded and we used visual studio code as our editor 
 To download the source code make sure your repository points to product and clone it 
 
-source link https://github.com/Jayson-Amike/website/tree/product/my-react-app
+Source code link https://github.com/Jayson-Amike/website/tree/product/my-react-app
+Database SQL https://github.com/Jayson-Amike/website/tree/sql/SQLcodes
 
 git clone https://github.com/Jayson-Amike/product.git
 cd product
