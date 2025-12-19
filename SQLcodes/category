@@ -1,0 +1,5 @@
+create table public.category (
+  product_id integer not null,
+  category character varying(100) not null,
+  constraint category_product_id_fkey foreign KEY (product_id) references products (product_id)
+) TABLESPACE pg_default;
