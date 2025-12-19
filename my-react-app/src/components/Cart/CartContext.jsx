@@ -72,6 +72,7 @@ export const CartProvider = ({ children }) => {
     }
   }, [cart, session, cartLoaded]);
 
+  // Add to cart
   const addToCart = async ({ product_table, product_id, quantity }) => {
     if (quantity < 1) return;
 
@@ -117,6 +118,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  // Remove item from cart
   const removeFromCart = async (product_id, product_table) => {
     if (session?.user) {
       await supabase
@@ -142,6 +144,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  // Update quantity
   const updateQuantity = async (product_id, product_table, quantity) => {
     if (quantity < 1) return;
 
@@ -163,9 +166,25 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // Clear entire cart
+  const clearCart = async () => {
+    if (session?.user) {
+      await supabase.from("carts").delete().eq("user_id", session.user.id);
+    }
+    setCart([]);
+    localStorage.removeItem("cart");
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateQuantity, cartLoaded }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        cartLoaded,
+        clearCart, // <- add this
+      }}
     >
       {children}
     </CartContext.Provider>
