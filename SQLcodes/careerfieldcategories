@@ -1,0 +1,9 @@
+create table public.careerfieldcategories (
+  id serial not null,
+  name character varying not null,
+  description text null,
+  jobtrend2025 character varying null,
+  imageurl character varying null,
+  constraint careerfieldcategories_pkey primary key (id),
+  constraint careerfieldcategories_name_key unique (name)
+) TABLESPACE pg_default;
