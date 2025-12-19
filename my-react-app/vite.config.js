@@ -4,13 +4,6 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react({
-      babel: {
-        plugins: [['babel-plugin-react-compiler']],
-      },
-    }),
-  ],
   resolve: {
     alias: {
       react: path.resolve(__dirname, 'node_modules/react'),
