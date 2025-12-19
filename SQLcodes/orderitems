@@ -1,0 +1,8 @@
+create table public.orderitems (
+  id bigserial not null,
+  order_id bigint null,
+  product_id bigint not null,
+  quantity integer not null,
+  constraint orderitems_pkey primary key (id),
+  constraint orderitems_order_id_fkey foreign KEY (order_id) references orders (id)
+) TABLESPACE pg_default;
