@@ -13,7 +13,6 @@ const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // ðŸ” Centralized redirect logic
   const redirectAfterLogin = () => {
     const redirect = localStorage.getItem("post_login_redirect") || "/";
     localStorage.removeItem("post_login_redirect");
