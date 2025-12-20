@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-// src/components/Cart/CartPage.jsx
 import { useCart } from "./CartContext";
 import { useEffect, useState } from "react";
 import supabase from "../../supabaseClient";
