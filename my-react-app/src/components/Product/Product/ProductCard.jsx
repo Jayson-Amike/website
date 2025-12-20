@@ -50,13 +50,15 @@ const ProductCard = ({ Name, tbName, route, filtervalue }) => {
 
   return (
     <div className="category-container">
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", justifyContent: "center", alignItems: "center" }}>
         <div>
           <h1>{title}</h1>
           <p>{description}</p>
         </div>
 
-        {/* Sorting Dropdown */}
+       
+      </div>
+       {/* Sorting Dropdown */}
         <div className="sort-container">
           <label htmlFor="sort" style={{ marginRight: "10px", fontWeight: "bold" }}>Sort By:</label>
           <select 
@@ -72,7 +74,6 @@ const ProductCard = ({ Name, tbName, route, filtervalue }) => {
             <option value="name-desc">Name: Z-A</option>
           </select>
         </div>
-      </div>
 
       <div className="category-card-container">
         {/* Render sortedProducts instead of products */}

@@ -222,12 +222,12 @@ const CheckoutPage = () => {
           {careers.map((career) => (
             <li key={career.id} style={{ marginBottom: "15px", borderBottom: "1px solid #eee" }}>
               <strong>{career.name}</strong>
-              <p>Qty: {career.quantity} Ã— ${career.price.toFixed(2)}</p>
+              <p>Qty: {career.quantity}  ${career.price.toFixed(2)}</p>
               <p>Subtotal: ${(career.price * career.quantity).toFixed(2)}</p>
             </li>
           ))}
         </ul>
-        <h4>Subtotal: ${subtotal.toFixed(2)}</h4>
+        <h4>Totsl: ${subtotal.toFixed(2)}</h4>
       </div>
     </div>
   );
