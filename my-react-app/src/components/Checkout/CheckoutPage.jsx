@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-// src/components/Checkout/CheckoutPage.jsx
 import { useCart } from "../Cart/CartContext";
 import { useAuth } from "../Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
