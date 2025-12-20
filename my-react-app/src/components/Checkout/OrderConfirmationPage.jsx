@@ -6,7 +6,7 @@ const OrderConfirmedPage = () => {
 
   return (
     <div style={{ textAlign: "center", padding: "2rem" }}>
-      <h1>ðŸŽ‰ Order Confirmed!</h1>
+      <h1>Order Confirmed!</h1>
       <p>Thank you for your purchase. Your order has been successfully placed.</p>
       <button onClick={() => navigate("/products/careers")}>
         Continue Shopping
