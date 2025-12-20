@@ -1,4 +1,3 @@
-// src/utils/buyNowRedirect.js
 export const buyNowRedirect = (session, navigate) => {
   if (session) {
     navigate("/checkout");
