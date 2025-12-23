@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-app-service
+spec:
+  type: NodePort      # This exposes the service on a port on your VM
+  selector:
+    app: my-react-app # This MUST match the label in your deployment
+  ports:
+    - port: 80          # The port the service listens on
+      targetPort: 5173  # The port your React app is running on
+      nodePort: 30007   # A specific port to access it from your VM
